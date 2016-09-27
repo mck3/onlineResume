@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<div id="topic">
+		<p>If Statements</p>
+	</div>
+	<div id="content">
+		<p>
+			<b>Strict equality</b> is represented by === this is not to be confused with loose equality represented by ==
+			How do they differ? When you use three equal signs === no type conversion is done prior to the comparison.
+			This means if you have a string and a number they can never be equal because they will never be the same type.
+			<div id=”example”>
+				<p>
+					For example:  &quot;2&quot; === 2 is a false statement the &quot;2&quot; is a string while 2 is an integer.
+				</p>
+			</div>
+			For the two to be equal they must be of the same type while using three equal signs &quot;===&quot;
+			<b>Loose equality</b> is represented by two equal signs &quot;==&quot; checks to see if the two values
+			are the same type and if not, converts to a common type before the conversion. If they are the same then the result is true,
+			and there is no difference between == and ===. According to the lead front-end engineer at Udacity,
+			you should never use ==, It&#39;s a frequent source of bugs.
+		</div>

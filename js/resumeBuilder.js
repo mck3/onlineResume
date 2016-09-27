@@ -76,7 +76,7 @@ var projects = {
         "title": "Build your own quiz",
         "dates": "2016",
         "description": "The object of this project was to create a fill in the blanks quiz that can be changed in the code to match what subject your trying to learn vocabulary for.",
-        "images": "http://goo.gl/UXpz7Q"
+        "images": ["http://goo.gl/UXpz7Q,", "https://goo.gl/EfCVls" ]
     }, {
         "title": "Website Notes",
         "dates": "2016",
@@ -101,21 +101,6 @@ function displayBioDetails() {
         $("#skills").append(formattedSkills);
 
     });
-/*
-    if (bio.skills.length > 0) {
-
-        $("#header").append(HTMLskillsStart);
-
-        var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-        $("#skills").append(formattedSkill);
-    }
-*/
 
 }
 
@@ -187,8 +172,11 @@ projects.display = function() {
         var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
         $(".project-entry:last").append(formattedProjectDescription);
 
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", project.images);
+        images.forEach(function(image) {
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
         $(".project-entry:last").append(formattedProjectImage);
+
+    });
 
     });
 };

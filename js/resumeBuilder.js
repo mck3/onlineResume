@@ -71,17 +71,17 @@ var work = {
 
 
 
-var projects = {
+var project = {
     "projects": [{
         "title": "Build your own quiz",
         "dates": "2016",
         "description": "The object of this project was to create a fill in the blanks quiz that can be changed in the code to match what subject your trying to learn vocabulary for.",
-        "images": ["http://goo.gl/UXpz7Q,", "https://goo.gl/EfCVls" ]
+        "images": "http://goo.gl/UXpz7Q"
     }, {
         "title": "Website Notes",
         "dates": "2016",
         "description": "In this project I was to create a website to organize my notes using the tools taught in the class.",
-        "images": ["http://goo.gl/4gM4vR", "https://goo.gl/0Ed8hr"]
+        "images": "http://goo.gl/4gM4vR"
     }]
 };
 
@@ -94,13 +94,21 @@ function displayBioDetails() {
     $("#header").append(formattedPicture);
     $("#header").prepend(formattedName);
     $("#header").append(formattedRole);
-     $("#header").append(HTMLskillsStart);
 
-    bio.skills.forEach(function(skill) {
-        var formattedSkills = HTMLskills.replace("%data%", skill);
-        $("#skills").append(formattedSkills);
+    if (bio.skills.length > 0) {
 
-    });
+        $("#header").append(HTMLskillsStart);
+
+        var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+        $("#skills").append(formattedSkill);
+        formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+        $("#skills").append(formattedSkill);
+        formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+        $("#skills").append(formattedSkill);
+        formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+        $("#skills").append(formattedSkill);
+    }
+
 
 }
 
@@ -128,10 +136,22 @@ function displayEducation() {
         var formattedEducation = formattedSchool + formattedDates + formattedSchoolLocation + formattedSchoolDegree + formattedSchoolMajor;
         $(".education-entry:last").append(formattedEducation);
     });
+
+    $(".education-entry:last").append(HTMLonlineClasses);
+    education.onlineCourses.forEach(function(classes) {
+    	 $("education").append(HTMLonlineClasses);
+        var FormattedOnlineClassesTitle = HTMLonlineTitle.replace("%data%", classes.title);
+        var formattedOnlineSchooltitle = HTMLonlineSchool.replace("%data%", classes.school);
+        var formattedURL = HTMLonlineURL.replace("%data%", classes.url);
+        var formattedonlineDates = HTMLonlineDates.replace("%data%", classes.date);
+        var printOnlineClasses = FormattedOnlineClassesTitle + formattedOnlineSchooltitle + formattedURL + formattedonlineDates;
+        $(".education-entry:last").append(printOnlineClasses);
+
+    });
 }
 
 displayEducation();
-
+/*
 function displayOnlineEducation() {
     education.onlineCourses.forEach(function(classes) {
         $("education").append(HTMLonlineClasses);
@@ -145,7 +165,7 @@ function displayOnlineEducation() {
 }
 
 displayOnlineEducation();
-
+*/
 
 function displayWork() {
     work.jobs.forEach(function(job) {
@@ -163,20 +183,17 @@ function displayWork() {
 displayWork();
 
 projects.display = function() {
-    projects.projects.forEach(function(project) {
+    project.projects.forEach(function(projects) {
         $("#projects").append(HTMLprojectStart);
-        var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
+        var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.title);
         $(".project-entry:last").append(formattedProjectTitle);
-        var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
+        var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.dates);
         $(".project-entry:last").append(formattedProjectDates);
-        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
+        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.description);
         $(".project-entry:last").append(formattedProjectDescription);
 
-    project.images.forEach(function(image) {
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.images);
         $(".project-entry:last").append(formattedProjectImage);
-
-    });
 
     });
 };

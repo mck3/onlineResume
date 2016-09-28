@@ -122,7 +122,7 @@ function initializeMap() {
 
         // iterates through school locations and appends each location to
         // the locations array
-        education.schools.forEach(function(school) {
+        education.school.forEach(function(school) {
             locations.push(school.location);
         });
 

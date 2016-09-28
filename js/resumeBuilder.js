@@ -17,14 +17,14 @@ var bio = {
         "location": "Raleigh, NC",
     },
     "welcomeMessage": "Hi, my title is James, thank you for taking the time to check out my website.",
-    "bioPic": "http://goo.gl/QJGXoH",
+    "biopic": "http://goo.gl/QJGXoH",
     "skills": ["Python", "Java", "Photoshop", "Web Development"] //last value does not have a comma
 };
 
 
 var education = {
     "schools": [{
-        "titleSplit": "Polk State College",
+        "name": "Polk State College",
         "location": "Winter Haven, FL",
         "degree": "Micromanaging",
         "majors": ["Pop Culture ", " Floral Management"],
@@ -42,7 +42,7 @@ var education = {
 
         "title": "Into to Programming Nanodegree",
         "school": "Udacity",
-        "date": "2016",
+        "dates": "2016",
         "url": "https://www.udacity.com/course/intro-to-programming-nanodegree--nd000"
     }, ]
 };
@@ -71,22 +71,22 @@ var work = {
 
 
 
-var project = {
+var projects = {
     "projects": [{
         "title": "Build your own quiz",
         "dates": "2016",
         "description": "The object of this project was to create a fill in the blanks quiz that can be changed in the code to match what subject your trying to learn vocabulary for.",
-        "images": "http://goo.gl/UXpz7Q"
+        "images": ["http://goo.gl/UXpz7Q,", "https://goo.gl/EfCVls" ]
     }, {
         "title": "Website Notes",
         "dates": "2016",
         "description": "In this project I was to create a website to organize my notes using the tools taught in the class.",
-        "images": "http://goo.gl/4gM4vR"
+        "images": ["http://goo.gl/4gM4vR", "https://goo.gl/0Ed8hr"]
     }]
 };
 
 
-function displayBioDetails() {
+ function displayBioDetails() {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     var bioPhoto = bio.bioPic;
@@ -94,20 +94,13 @@ function displayBioDetails() {
     $("#header").append(formattedPicture);
     $("#header").prepend(formattedName);
     $("#header").append(formattedRole);
+     $("#header").append(HTMLskillsStart);
 
-    if (bio.skills.length > 0) {
+    bio.skills.forEach(function(skill) {
+        var formattedSkills = HTMLskills.replace("%data%", skill);
+        $("#skills").append(formattedSkills);
 
-        $("#header").append(HTMLskillsStart);
-
-        var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-        $("#skills").append(formattedSkill);
-    }
+    });
 
 
 }
@@ -137,35 +130,20 @@ function displayEducation() {
         $(".education-entry:last").append(formattedEducation);
     });
 
-    $(".education-entry:last").append(HTMLonlineClasses);
-    education.onlineCourses.forEach(function(classes) {
-    	 $("education").append(HTMLonlineClasses);
-        var FormattedOnlineClassesTitle = HTMLonlineTitle.replace("%data%", classes.title);
-        var formattedOnlineSchooltitle = HTMLonlineSchool.replace("%data%", classes.school);
-        var formattedURL = HTMLonlineURL.replace("%data%", classes.url);
-        var formattedonlineDates = HTMLonlineDates.replace("%data%", classes.date);
-        var printOnlineClasses = FormattedOnlineClassesTitle + formattedOnlineSchooltitle + formattedURL + formattedonlineDates;
-        $(".education-entry:last").append(printOnlineClasses);
-
-    });
-}
-
-displayEducation();
-/*
-function displayOnlineEducation() {
-    education.onlineCourses.forEach(function(classes) {
+    $(".education-entry:last").append(HTMLonlineClasses) 
+        education.onlineCourses.forEach(function(classes) {
         $("education").append(HTMLonlineClasses);
         var FormattedOnlineClassesTitle = HTMLonlineTitle.replace("%data%", classes.title);
         var formattedOnlineSchooltitle = HTMLonlineSchool.replace("%data%", classes.school);
         var formattedURL = HTMLonlineURL.replace("%data%", classes.url);
-        var formattedonlineDates = HTMLonlineDates.replace("%data%", classes.date);
+        var formattedonlineDates = HTMLonlineDates.replace("%data%", classes.dates);
         var printOnlineClasses = FormattedOnlineClassesTitle + formattedOnlineSchooltitle + formattedURL + formattedonlineDates;
         $(".education-entry:last").append(printOnlineClasses);
     });
 }
 
-displayOnlineEducation();
-*/
+displayEducation();
+
 
 function displayWork() {
     work.jobs.forEach(function(job) {
@@ -179,21 +157,25 @@ function displayWork() {
         $(".work-entry:last").append(formattedEmployerTitle);
         $(".work-entry:last").append(formattedLocation);
     });
+    $
 }
 displayWork();
 
 projects.display = function() {
-    project.projects.forEach(function(projects) {
+    projects.projects.forEach(function(project) {
         $("#projects").append(HTMLprojectStart);
-        var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.title);
+        var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
         $(".project-entry:last").append(formattedProjectTitle);
-        var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.dates);
+        var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
         $(".project-entry:last").append(formattedProjectDates);
-        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.description);
+        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
         $(".project-entry:last").append(formattedProjectDescription);
 
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.images);
+    project.images.forEach(function(image) {
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
         $(".project-entry:last").append(formattedProjectImage);
+
+    });
 
     });
 };

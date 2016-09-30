@@ -31,7 +31,7 @@ var education = {
         "dates": "2011 to 2015",
         "url": "https://www.polk.edu/"
     }, {
-        "title": "University Of North Carolina",
+        "name": "University Of North Carolina",
         "location": "Chaple Hill, NC",
         "degree": "Unfinished",
         "majors": ["International Communication ", " Peace, War, and Defense"],
@@ -86,11 +86,11 @@ var projects = {
 };
 
 
- function displayBioDetails() {
+ bio.display = function () {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-    var bioPhoto = bio.bioPic;
-    var formattedPicture = HTMLbioPic.replace("%data%", bio.bioPic);
+    var bioPhoto = bio.biopic;
+    var formattedPicture = HTMLbioPic.replace("%data%", bio.biopic);
     $("#header").append(formattedPicture);
     $("#header").prepend(formattedName);
     $("#header").append(formattedRole);
@@ -102,11 +102,15 @@ var projects = {
 
     });
 
-
+     $('#topContacts, #footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
+     $('#topContacts, #footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
+     $('#topContacts, #footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
+     $('#topContacts, #footerContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
 }
+bio.display();
 
-displayBioDetails();
-
+//displayBioDetails();
+/*
 function appendResume(what, how, where) {
 
     $(where).append(how.replace("%data%", what));
@@ -116,12 +120,13 @@ function appendResume(what, how, where) {
 appendResume(bio.contacts.mobile, HTMLmobile, "#topContacts, #footerContacts");
 appendResume(bio.contacts.email, HTMLemail, "#topContacts, #footerContacts");
 appendResume(bio.contacts.location, HTMLlocation, "#topContacts, #footerContacts"); 
+*/
 
-
-function displayEducation() {
+education.display = function() {
     education.schools.forEach(function(school) {
         $("#education").append(HTMLschoolStart);
-        var formattedSchool = HTMLschoolName.replace("%data%", school.title);
+        var formattedSchool = HTMLschoolName.replace("%data%", school.name);
+        var formattedSchoolURL = HTMLschoolName.replace('#', school.url);
         var formattedDates = HTMLschoolDates.replace("%data%", school.dates);
         var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
         var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
@@ -142,7 +147,7 @@ function displayEducation() {
     });
 }
 
-displayEducation();
+education.display();
 
 
 function displayWork() {

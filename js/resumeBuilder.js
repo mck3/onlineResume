@@ -76,7 +76,7 @@ var projects = {
         "title": "Build your own quiz",
         "dates": "2016",
         "description": "The object of this project was to create a fill in the blanks quiz that can be changed in the code to match what subject your trying to learn vocabulary for.",
-        "images": ["http://goo.gl/UXpz7Q,", "https://goo.gl/EfCVls" ]
+        "images": ["http://goo.gl/UXpz7Q,", "https://goo.gl/EfCVls"]
     }, {
         "title": "Website Notes",
         "dates": "2016",
@@ -86,7 +86,7 @@ var projects = {
 };
 
 
- bio.display = function () {
+bio.display = function() {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     var bioPhoto = bio.biopic;
@@ -94,7 +94,7 @@ var projects = {
     $("#header").append(formattedPicture);
     $("#header").prepend(formattedName);
     $("#header").append(formattedRole);
-     $("#header").append(HTMLskillsStart);
+    $("#header").append(HTMLskillsStart);
 
     bio.skills.forEach(function(skill) {
         var formattedSkills = HTMLskills.replace("%data%", skill);
@@ -102,11 +102,11 @@ var projects = {
 
     });
 
-     $('#topContacts, #footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
-     $('#topContacts, #footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
-     $('#topContacts, #footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
-     $('#topContacts, #footerContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
-}
+    $('#topContacts, #footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
+    $('#topContacts, #footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
+    $('#topContacts, #footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
+    $('#topContacts, #footerContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
+};
 bio.display();
 
 //displayBioDetails();
@@ -125,7 +125,7 @@ appendResume(bio.contacts.location, HTMLlocation, "#topContacts, #footerContacts
 education.display = function() {
     education.schools.forEach(function(school) {
         $("#education").append(HTMLschoolStart);
-        var formattedSchool = HTMLschoolName.replace("%data%", school.name);
+        var formattedSchool = HTMLschoolName.replace("%data%", school.name).replace('#', school.url);
         var formattedSchoolURL = HTMLschoolName.replace('#', school.url);
         var formattedDates = HTMLschoolDates.replace("%data%", school.dates);
         var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
@@ -135,8 +135,8 @@ education.display = function() {
         $(".education-entry:last").append(formattedEducation);
     });
 
-    $(".education-entry:last").append(HTMLonlineClasses) 
-        education.onlineCourses.forEach(function(classes) {
+    $(".education-entry:last").append(HTMLonlineClasses);
+    education.onlineCourses.forEach(function(classes) {
         $("education").append(HTMLonlineClasses);
         var FormattedOnlineClassesTitle = HTMLonlineTitle.replace("%data%", classes.title);
         var formattedOnlineSchooltitle = HTMLonlineSchool.replace("%data%", classes.school);
@@ -145,7 +145,7 @@ education.display = function() {
         var printOnlineClasses = FormattedOnlineClassesTitle + formattedOnlineSchooltitle + formattedURL + formattedonlineDates;
         $(".education-entry:last").append(printOnlineClasses);
     });
-}
+};
 
 education.display();
 
@@ -162,7 +162,6 @@ function displayWork() {
         $(".work-entry:last").append(formattedEmployerTitle);
         $(".work-entry:last").append(formattedLocation);
     });
-    $
 }
 displayWork();
 
@@ -176,11 +175,11 @@ projects.display = function() {
         var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
         $(".project-entry:last").append(formattedProjectDescription);
 
-    project.images.forEach(function(image) {
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
-        $(".project-entry:last").append(formattedProjectImage);
+        project.images.forEach(function(image) {
+            var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
+            $(".project-entry:last").append(formattedProjectImage);
 
-    });
+        });
 
     });
 };

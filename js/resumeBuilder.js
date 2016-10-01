@@ -1,6 +1,3 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
- */
 //$("#main").append("James McKinnes");
 //var awesomeThoughts = "I am James McKinnes and I am AWESOME!"
 //var newstring = awesomeThoughts.replace("AWESOME!", "FUN!")
@@ -131,7 +128,7 @@ education.display = function() {
         var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
         var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
         var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
-        var formattedEducation = formattedSchool + formattedDates + formattedSchoolLocation + formattedSchoolDegree + formattedSchoolMajor;
+        var formattedEducation = formattedSchool + formattedSchoolDegree + formattedDates + formattedSchoolLocation + formattedSchoolMajor;
         $(".education-entry:last").append(formattedEducation);
     });
 
@@ -150,7 +147,8 @@ education.display = function() {
 education.display();
 
 
-function displayWork() {
+
+work.display = function() {
     work.jobs.forEach(function(job) {
         $("#workExperience").append(HTMLworkStart);
         var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
@@ -163,7 +161,8 @@ function displayWork() {
         $(".work-entry:last").append(formattedLocation);
     });
 }
-displayWork();
+
+work.display();
 
 projects.display = function() {
     projects.projects.forEach(function(project) {
